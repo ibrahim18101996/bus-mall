@@ -1,17 +1,12 @@
-#imagesSection{
+/* #imagesSection{
     display: inline-block;
     width: 30%;
     size: 15px;
+} */
+img{
+    width: 250px;
+float: left;
 }
-#img1{
-    size: 5cm;
-    display: inline-block;
-}
-#img2{
-    size: 5cm;
-display: inline-block;
-}
-#img3{
-    size: 5cm;
-display: inline-block;
+#views{
+    float: left;
 }
