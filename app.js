@@ -59,6 +59,7 @@ var totalClicks = 0;
 function handleClickOnStuffs(event) {
     
     if (totalClicks < 25) {
+        setItem();
         if (event.target.id !== 'imagesSection') {
             if (event.target.id == 'img1') {
                 img1Stuffs.click++;
@@ -172,5 +173,15 @@ var myChart = new Chart(ctx, {
     }
 });
 }
-console.log(myChart);
-// renderChartArray();
+function setItem(){
+ var order = JSON.stringify(Stuffs.all);
+ localStorage.setItem('newValue',order);
+
+}
+function getItem(){
+    if(localStorage.getItem('newValue')){
+        var newValue = localStorage.getItem('newValue');
+    Stuffs.all = JSON.parse(newValue);  
+  }
+}
+getItem();
