@@ -4,17 +4,6 @@ var img1 = document.querySelector(`#img1`);
 var img2 = document.querySelector(`#img2`);
 var img3 = document.querySelector(`#img3`);
 var imagesSection = document.querySelector('#imagesSection');
-// img1.src = `images/${name[0]}.jpg`;
-// img1.alt = names[0];
-// img1.title = names[0];
-
-// img2.src = `images/${name[0]}.jpg`;
-// img2.alt = names[0];
-// img2.title = names[0];
-
-// img3.src = `images/${name[0]}.jpg`;
-// img3.alt = names[0];
-// img3.title = names[0];
 
 var click = 0;
 var views = 0;
@@ -29,9 +18,7 @@ function Stuffs(name) {
 Stuffs.all = [];
 for (var i = 0; i < names.length; i++) {
     new Stuffs(names[i]);
-    console.log(names[i])
 }
-// var ibrahim=new Stuffs('ibrahim',1,2)
 var min = 0;
 var max = 15;
 function randomNumber(min, max) {
@@ -52,7 +39,6 @@ function render() {
         
          img2Stuffs = Stuffs.all[randomNumber(0, Stuffs.all.length - 1)];
          img3Stuffs = Stuffs.all[randomNumber(0, Stuffs.all.length - 1)];
-        console.log(img3Stuffs)
     }
 
     img1.setAttribute('src', img1Stuffs.imagePath);
@@ -72,42 +58,119 @@ imagesSection.addEventListener('click', handleClickOnStuffs);
 var totalClicks = 0;
 function handleClickOnStuffs(event) {
     
-// for(var i=0;i<Stuffs.all.length;i++){
     if (totalClicks < 25) {
         if (event.target.id !== 'imagesSection') {
             if (event.target.id == 'img1') {
                 img1Stuffs.click++;
-                img1Stuffs.views++;
-               
+                
             } if (event.target.id == 'img2') {
                 img2Stuffs.click++;
-                img2Stuffs.views++;
-       
+                
             } else if (event.target.id == 'img3') {
                 img3Stuffs.click++;
-                img3Stuffs.views++;
-                // console.log('third',Stuffs.all[i].click)
-
             }
             totalClicks++;
+            img1Stuffs.views++;
+            img2Stuffs.views++;
+            img3Stuffs.views++;
             render();
         } }
     else {
         console.log('more than 25 clicks');
         console.log(totalClicks);
-        console.log('views is :', views);
         imagesSection.removeEventListener('click', handleClickOnStuffs);
         render2();
+        renderChartArray();
+        
     }
 
-} console.log(click);
+} 
+
 function render2(){
     var ulE1 =document.getElementById('views');
     for (var i=0 ;i<Stuffs.all.length ;i++){
         var liE1 =document.createElement('li');
         ulE1.appendChild(liE1);
-        console.log('loop',Stuffs.all[i].click)
         liE1.textContent =`${Stuffs.all[i].name} has ${Stuffs.all[i].click} clicks and ${Stuffs.all[i].views} view`;
     }
 }
-console.log(Stuffs.all)
+function renderChartArray(){
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var itemsName =[];
+    var itemsClick =[];
+    var itemsView =[];
+
+    for (var i=0 ;i<Stuffs.all.length ;i++){
+    
+    var testing = Stuffs.all[i].name;   
+    var itemsClick1 = Stuffs.all[i].click;
+    var itemsView1 = Stuffs.all[i].views;
+    // console.log(Stuffs.all[i]);
+    itemsName.push(testing)
+    //itemsName.push(itemsName1);
+     itemsClick.push(itemsClick1);
+    itemsView.push(itemsView1);
+    console.log(itemsView1);
+    }
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: itemsName,
+        datasets: [{
+            label: '# of Votes',
+            data: itemsClick,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {
+            label: '# of Views',
+            data: itemsView,
+            backgroundColor: [
+                'rgba(210, 99, 132, 0.2)',
+                'rgba(154, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(121, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(210, 99, 132, 1)',
+                'rgba(154, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(121, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
+console.log(myChart);
+// renderChartArray();
