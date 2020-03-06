@@ -78,7 +78,7 @@ function handleClickOnStuffs(event) {
         } }
     else {
         console.log('more than 25 clicks');
-        console.log(totalClicks);
+        alert('this is more than 25 trial');
         imagesSection.removeEventListener('click', handleClickOnStuffs);
         render2();
         renderChartArray();
@@ -107,9 +107,7 @@ function renderChartArray(){
     var testing = Stuffs.all[i].name;   
     var itemsClick1 = Stuffs.all[i].click;
     var itemsView1 = Stuffs.all[i].views;
-    // console.log(Stuffs.all[i]);
     itemsName.push(testing)
-    //itemsName.push(itemsName1);
      itemsClick.push(itemsClick1);
     itemsView.push(itemsView1);
     console.log(itemsView1);

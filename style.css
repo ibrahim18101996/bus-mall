@@ -1,12 +1,30 @@
-/* #imagesSection{
-    display: inline-block;
-    width: 30%;
-    size: 15px;
-} */
+header{
+text-align: center;
+opacity: 55%;
+position: relative;
+background-color: mediumaquamarine;
+font-size: x-large;}
 img{
     width: 250px;
-float: left;
+text-align: center;
+border: lightcoral;
+border-radius: 50px;
+
 }
+#imagesSection{
+    text-align: center;
+   
+    background-color: limegreen;
+}
+)
 #views{
     float: left;
+}
+body{
+background-color: lightgreen;
+}
+#views{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: mediumorchid;
+    font-size: large;
 }
