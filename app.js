@@ -183,3 +183,4 @@ function getItem(){
   }
 }
 getItem();
+console.log(status);
